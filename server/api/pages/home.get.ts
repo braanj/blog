@@ -1,5 +1,5 @@
 import request from "~/server/api/utils/graphql/request";
-import query from "./utils/graphql/query";
+import query from "~/server/api/utils/graphql/query";
 
 export default defineEventHandler(async (_: any) => {
   const q = query(`

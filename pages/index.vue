@@ -4,7 +4,7 @@
 
 <script setup>
 const { data } = useAsyncData("data", async (_) => {
-  const data = await useFetchWithCache("/api/home");
+  const data = await useFetchWithCache("/api/pages/home");
 
   return data;
 });
