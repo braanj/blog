@@ -15,9 +15,10 @@
     "@vueuse/core": "^10.7.0",
     "@vueuse/nuxt": "^10.7.0",
     "eslint": "^8.55.0",
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
     "nuxt": "^3.9.0",
     "pinia": "^2.1.7",
     "vite-plugin-vsharp": "^1.7.3"
-  },
-  "dependencies": {}
+  }
 }
