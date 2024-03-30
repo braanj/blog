@@ -1,24 +1,23 @@
 import request from "~/server/api/utils/graphql/request";
-import query from "~/server/api/utils/graphql/query";
+import { gql } from "graphql-request";
 
 export default defineEventHandler(async (_: any) => {
-  const q = query(`
+  const q = gql`
     query {
-      websiteCollection {
+      pageCollection(where: { internal_name: "Landing Page" }) {
         items {
           internalName
           externalName
-          pagesCollection {
+          contentContainersCollection {
             items {
               internalName
               externalName
-              slug
             }
           }
         }
       }
     }
-  `);
+  `;
 
   const data = await request(q);
   return data;
