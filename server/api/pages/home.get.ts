@@ -4,19 +4,16 @@ import { gql } from "graphql-request";
 export default defineEventHandler(async (_: any) => {
   const q = gql`
     query {
-      pageCollection(where: { internal_name: "Landing Page" }, limit: 1) {
+      pageCollection(where: { slug: "homepage" }, limit: 1) {
         items {
-          internalName
           externalName
-          contentContainersCollection(limit: 1) {
+          contentContainersCollection(limit: 10) {
             items {
-              internalName
               externalName
               contentCollection(limit: 10) {
                 items {
                   __typename
                   ... on Text {
-                    internalName
                     shortSimpleText
                     longSimpleText
                     richText {
@@ -24,13 +21,10 @@ export default defineEventHandler(async (_: any) => {
                     }
                   }
                   ... on Button {
-                    internalName
                     externalName
                     link {
-                      internalName
                       externalName
                       ctaPageUrl {
-                        internalName
                         externalName
                         slug
                       }
@@ -44,7 +38,6 @@ export default defineEventHandler(async (_: any) => {
                     }
                   }
                   ... on Media {
-                    internalName
                     externalName
                     altText
                     media {
@@ -52,6 +45,18 @@ export default defineEventHandler(async (_: any) => {
                       width
                       height
                       url
+                    }
+                  }
+                  ... on HeadlineImage {
+                    internalName
+                    externalName
+                    subtitle
+                    featuredImage {
+                      internalName
+                      altText
+                      media {
+                        url
+                      }
                     }
                   }
                 }
