@@ -25,6 +25,8 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
   ],
 
+  components: { global: true, dirs: ["~/components"] },
+
   supabase: {
     redirectOptions: {
       login: "/login",
