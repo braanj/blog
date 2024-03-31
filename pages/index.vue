@@ -1,8 +1,17 @@
 <template>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero vero
-    praesentium odio eaque sapiente adipisci alias, deserunt quas totam
-    veritatis consequatur eum dolore atque qui dolor. Consequuntur asperiores
-    aliquam temporibus.
-  </p>
+  <section v-for="(container, index) in data" :key="index">
+    <div v-if="container">
+      <h1>{{ container.internalName }}</h1>
+      <div v-for="content in container.content">
+        <component :is="`content-${content.type}`" :content="content" />
+      </div>
+    </div>
+  </section>
 </template>
+
+<script setup>
+const { data } = useAsyncData("contentContainers", async (_) => {
+  const contentContainers = await useFetchWithCache("/api/pages/home");
+  return contentContainers;
+});
+</script>
