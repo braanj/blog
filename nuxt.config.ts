@@ -23,7 +23,13 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/supabase",
     "@pinia/nuxt",
+    "@nuxt/image",
   ],
+
+  image: {
+    quality: 80,
+    contentful: {},
+  },
 
   components: { global: true, dirs: ["~/components"] },
 

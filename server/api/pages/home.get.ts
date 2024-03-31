@@ -51,6 +51,7 @@ export default defineEventHandler(async (_: any) => {
                       fileName
                       width
                       height
+                      url
                     }
                   }
                 }
