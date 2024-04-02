@@ -7,7 +7,7 @@ const props = defineProps({
 
 const nuxtImg = useImage();
 
-const featuredImage = computed(() => {
+const { data: featuredImage } = useAsyncData("featuredImage", (_) => {
   const imgUrl = nuxtImg(props.content.featuredImage.media.url, {
     modifiers: {
       format: "webp",

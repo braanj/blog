@@ -24,6 +24,18 @@ export default defineNuxtConfig({
     "@nuxtjs/supabase",
     "@pinia/nuxt",
     "@nuxt/image",
+    [
+      "@nuxtjs/google-fonts",
+      {
+        families: {
+          Roboto: true,
+          Inter: [400, 700],
+          "Josefin+Sans": true,
+          Lato: [100, 300],
+        },
+        useStylesheet: true,
+      },
+    ],
   ],
 
   image: {
