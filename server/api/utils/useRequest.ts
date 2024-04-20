@@ -1,6 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 
-export default (query: any) => {
+export default <T>(query: any): Promise<T> => {
   const config = useRuntimeConfig();
 
   const graphQLClient = new GraphQLClient(

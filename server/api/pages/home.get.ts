@@ -1,80 +1,18 @@
-import request from "~/server/api/utils/graphql/request";
-import { gql } from "graphql-request";
+import useRequest from "~/server/api/utils/useRequest";
+import { PAGE } from "@/graphql/documents/queries";
+
+// TODO: generate types from the response & move it to the types folder
+type Page = {
+  [x: string]: any;
+};
 
 export default defineEventHandler(async (_: any) => {
-  const q = gql`
-    query {
-      pageCollection(where: { slug: "homepage" }, limit: 1) {
-        items {
-          externalName
-          contentContainersCollection(limit: 10) {
-            items {
-              externalName
-              contentCollection(limit: 10) {
-                items {
-                  __typename
-                  ... on Text {
-                    shortSimpleText
-                    longSimpleText
-                    richText {
-                      json
-                    }
-                  }
-                  ... on Button {
-                    externalName
-                    link {
-                      externalName
-                      ctaPageUrl {
-                        externalName
-                        slug
-                      }
-                      iconImage {
-                        fileName
-                        width
-                        height
-                        title
-                        url
-                      }
-                    }
-                  }
-                  ... on Media {
-                    externalName
-                    altText
-                    media {
-                      fileName
-                      width
-                      height
-                      url
-                    }
-                  }
-                  ... on HeadlineImage {
-                    internalName
-                    externalName
-                    subtitle
-                    featuredImage {
-                      internalName
-                      altText
-                      media {
-                        url
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
+  const data: Page = await useRequest<Page>(PAGE);
+  return useContentContainers(data);
+});
 
-  type Page = {
-    [x: string]: any;
-  };
-
-  const data: Page = (await request(q)) as Page;
-
-  // Return content containers only
+// Reusable functions specific for this endpoint
+function useContentContainers(data: Page) {
   let contentContainersCollection =
     data.pageCollection.items[0].contentContainersCollection.items;
 
@@ -99,4 +37,4 @@ export default defineEventHandler(async (_: any) => {
   );
 
   return contentContainersCollection;
-});
+}
