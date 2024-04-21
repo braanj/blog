@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   content: {
     type: {},
@@ -6,22 +6,11 @@ const props = defineProps({
 });
 
 const nuxtImg = useImage();
-
 const { data: featuredImage } = useAsyncData("featuredImage", (_) => {
-  const imgUrl = nuxtImg(props.content.featuredImage.media.url, {
-    modifiers: {
-      format: "webp",
-      quality: 10,
-      height: props.content.featuredImage.media,
-    },
-  });
-
-  return imgUrl;
+  return useNuxtImg(props.content.featuredImage.media);
 });
 
-const bgStyles = computed(() => ({
-  backgroundImage: `url('${featuredImage.value}')`,
-}));
+const bgStyles = computed(useBackgroundImage);
 
 useHead({
   link: [
@@ -32,6 +21,21 @@ useHead({
     },
   ],
 });
+
+// Reusable functions specific for this component
+function useNuxtImg(media: any) {
+  return nuxtImg(media.url, {
+    modifiers: {
+      format: "webp",
+      quality: 10,
+      height: media.height,
+    },
+  });
+}
+
+function useBackgroundImage() {
+  return { backgroundImage: `url('${featuredImage.value}')` };
+}
 </script>
 
 <template>
