@@ -10,7 +10,7 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      routes: ["/", "/landing"],
+      routes: ["/"],
     },
   },
 
@@ -24,6 +24,15 @@ export default defineNuxtConfig({
     "@nuxtjs/supabase",
     "@pinia/nuxt",
     "@nuxt/image",
+    [
+      "@nuxtjs/google-fonts",
+      {
+        families: {
+          Roboto: [300, 400, 600, 700],
+        },
+        useStylesheet: true,
+      },
+    ],
   ],
 
   image: {
@@ -40,4 +49,6 @@ export default defineNuxtConfig({
       exclude: ["/*"], // We implement our own auth behaviour in the auth middleware
     },
   },
+
+  css: ["~/assets/css/main.css"],
 });
