@@ -6,17 +6,21 @@ import {
   textFields,
 } from "./fragments";
 
+const CONTENT_CONTAINERS_LIMIT = 10;
+const PAGE_COLLECTION_LIMIT = 1;
+const SLUG = "homepage";
+
 export const PAGE = gql`
   query Page {
-    pageCollection(where: { slug: "homepage" }, limit: 1) {
+    pageCollection(where: { slug: "${SLUG}" }, limit: ${PAGE_COLLECTION_LIMIT}) {
       items {
         externalName
         internalName
-        contentContainersCollection(limit: 10) {
+        contentContainersCollection(limit: ${CONTENT_CONTAINERS_LIMIT}) {
           items {
             externalName
             internalName
-            contentCollection(limit: 10) {
+            contentCollection(limit: ${CONTENT_CONTAINERS_LIMIT}) {
               items {
                 __typename
                 ...textFields

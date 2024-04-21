@@ -28,10 +28,7 @@ export default defineNuxtConfig({
       "@nuxtjs/google-fonts",
       {
         families: {
-          Roboto: true,
-          Inter: [400, 700],
-          "Josefin+Sans": true,
-          Lato: [100, 300],
+          Roboto: [300, 400, 600, 700],
         },
         useStylesheet: true,
       },
@@ -52,4 +49,6 @@ export default defineNuxtConfig({
       exclude: ["/*"], // We implement our own auth behaviour in the auth middleware
     },
   },
+
+  css: ["~/assets/css/main.css"],
 });
