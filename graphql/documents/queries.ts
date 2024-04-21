@@ -1,6 +1,7 @@
 import { gql } from "graphql-request";
 import {
   buttonFields,
+  carouselFields,
   headlineImageFields,
   mediaFields,
   textFields,
@@ -27,6 +28,7 @@ export const PAGE = gql`
                 ...buttonFields
                 ...mediaFields
                 ...headlineImageFields
+                ...carouselFields
               }
             }
           }
@@ -38,4 +40,5 @@ export const PAGE = gql`
   ${buttonFields}
   ${mediaFields}
   ${headlineImageFields}
+  ${carouselFields}
 `;

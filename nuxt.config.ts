@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     "@nuxtjs/supabase",
     "@pinia/nuxt",
     "@nuxt/image",
+    "nuxt-swiper",
     [
       "@nuxtjs/google-fonts",
       {
@@ -36,7 +37,6 @@ export default defineNuxtConfig({
   ],
 
   image: {
-    quality: 80,
     contentful: {},
   },
 

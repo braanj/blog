@@ -31,7 +31,7 @@ const ratio = computed(() => {
     :alt="alt"
     :width="ratio.width"
     :height="ratio.height"
-    provider="contentful"
     format="webp"
+    class="m-0"
   />
 </template>
