@@ -3,6 +3,9 @@ const props = defineProps({
   content: {
     type: {},
   },
+  class: {
+    type: String,
+  },
 });
 
 const alt = computed(() => {
@@ -32,6 +35,7 @@ const ratio = computed(() => {
     :width="ratio.width"
     :height="ratio.height"
     format="webp"
-    class="m-0"
+    :class="class"
+    loading="lazy"
   />
 </template>

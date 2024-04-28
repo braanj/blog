@@ -6,3 +6,7 @@ section {
   content-visibility: auto;
   contain-intrinsic-size: auto 500px;
 }
+
+.container {
+  @apply max-w-[1000px];
+}
