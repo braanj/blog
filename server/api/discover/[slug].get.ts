@@ -1,13 +1,16 @@
 import useRequest from "~/server/api/utils/useRequest";
-import { PAGE } from "@/graphql/documents/queries";
+import { usePageQuery } from "@/graphql/documents/queries";
 
 // TODO: generate types from the response & move it to the types folder
 type Page = {
   [x: string]: any;
 };
 
-export default defineEventHandler(async (_: any) => {
-  const data: Page = await useRequest<Page>(PAGE);
+export default defineEventHandler(async (event: any) => {
+  const { slug } = event.context.params;
+  const query = usePageQuery(slug);
+
+  const data: Page = await useRequest<Page>(query);
   return useContentContainers(data);
 });
 
