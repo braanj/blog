@@ -41,7 +41,7 @@ const { data: slides } = useAsyncData("slides", (_) => {
         :key="slide.slug"
       >
         <div class="w-full rounded overflow-hidden">
-          <content-media :content="slide.cover" class="m-0" />
+          <shared-media :content="slide.cover" class="m-0" />
           <h2
             class="absolute top-[50%] left-[50%] text-white translate-x-[-50%] translate-y-[-50%] m-0"
           >
