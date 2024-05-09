@@ -20,8 +20,11 @@
     "eslint": "^8.55.0",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
-    "nuxt": "^3.9.0",
+    "nuxt": "^3.11.2",
     "pinia": "^2.1.7",
     "vite-plugin-vsharp": "^1.7.3"
+  },
+  "dependencies": {
+    "nuxt-swiper": "^1.2.2"
   }
 }

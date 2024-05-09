@@ -67,3 +67,35 @@ export const headlineImageFields = gql`
     }
   }
 `;
+
+const CONTENT_CONTAINERS_LIMIT = 10;
+export const carouselFields = gql`
+  fragment carouselFields on Carousel {
+    internalName
+    externalName
+    codeId
+    numberToDisplayAtOneTime
+    startAutoplaying
+    autoplayTime
+    contentCollection(limit: ${CONTENT_CONTAINERS_LIMIT}) {
+      items {
+        __typename
+        ...on Page {
+          internalName
+          externalName
+          slug
+          cover {
+            externalName
+            altText
+            media {
+              fileName
+              width
+              height
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+`;

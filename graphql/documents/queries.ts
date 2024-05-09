@@ -1,6 +1,7 @@
 import { gql } from "graphql-request";
 import {
   buttonFields,
+  carouselFields,
   headlineImageFields,
   mediaFields,
   textFields,
@@ -8,11 +9,11 @@ import {
 
 const CONTENT_CONTAINERS_LIMIT = 10;
 const PAGE_COLLECTION_LIMIT = 1;
-const SLUG = "homepage";
 
-export const PAGE = gql`
+export const usePageQuery = (slug: string) => {
+  return gql`
   query Page {
-    pageCollection(where: { slug: "${SLUG}" }, limit: ${PAGE_COLLECTION_LIMIT}) {
+    pageCollection(where: { slug: "${slug}" }, limit: ${PAGE_COLLECTION_LIMIT}) {
       items {
         externalName
         internalName
@@ -27,6 +28,7 @@ export const PAGE = gql`
                 ...buttonFields
                 ...mediaFields
                 ...headlineImageFields
+                ...carouselFields
               }
             }
           }
@@ -38,4 +40,6 @@ export const PAGE = gql`
   ${buttonFields}
   ${mediaFields}
   ${headlineImageFields}
+  ${carouselFields}
 `;
+};
