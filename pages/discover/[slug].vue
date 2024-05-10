@@ -11,8 +11,5 @@
 <script setup>
 const route = useRoute();
 const { slug } = route.params;
-const { data } = useAsyncData("contentContainers", async (_) => {
-  const contentContainers = await useFetchWithCache(`/api/discover/${slug}`);
-  return contentContainers;
-});
+const data = await usePage(slug);
 </script>
