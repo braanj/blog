@@ -23,7 +23,7 @@ const { data: slides } = useAsyncData("slides", (_) => {
 
 <template>
   <div class="container mx-auto p-4">
-    <h2>{{ name }}</h2>
+    <h2 class="mt-0">{{ name }}</h2>
     <Swiper
       :modules="[SwiperAutoplay]"
       slides-per-view="auto"
