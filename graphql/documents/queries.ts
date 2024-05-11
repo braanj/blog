@@ -43,3 +43,39 @@ export const usePageQuery = (slug: string) => {
   ${carouselFields}
 `;
 };
+
+export const useSettingsQuery = () => {
+  return gql`
+    query Settings {
+      settingsCollection(limit: 1) {
+        items {
+          homepage {
+            externalName
+            internalName
+            contentContainersCollection(limit: ${CONTENT_CONTAINERS_LIMIT}) {
+              items {
+                externalName
+                internalName
+                contentCollection(limit: ${CONTENT_CONTAINERS_LIMIT}) {
+                  items {
+                    __typename
+                    ...textFields
+                    ...buttonFields
+                    ...mediaFields
+                    ...headlineImageFields
+                    ...carouselFields
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    ${textFields}
+    ${buttonFields}
+    ${mediaFields}
+    ${headlineImageFields}
+    ${carouselFields}
+  `;
+};

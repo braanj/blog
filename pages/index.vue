@@ -9,5 +9,5 @@
 </template>
 
 <script setup>
-const data = await usePage("homepage");
+const data = await useHomepage();
 </script>
