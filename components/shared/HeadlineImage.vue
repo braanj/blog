@@ -1,14 +1,13 @@
 <script setup lang="ts">
 const props = defineProps({
   content: {
-    type: {},
+    type: Object,
+    required: true,
   },
 });
 
 const nuxtImg = useImage();
-const { data: featuredImage } = useAsyncData("featuredImage", (_) => {
-  return useNuxtImg(props.content.featuredImage.media);
-});
+const featuredImage = useNuxtImg(props.content.featuredImage.media);
 
 const bgStyles = computed(useBackgroundImage);
 
@@ -17,7 +16,7 @@ useHead({
     {
       rel: "preload",
       as: "image",
-      href: featuredImage.value as string,
+      href: featuredImage,
     },
   ],
 });
@@ -34,7 +33,7 @@ function useNuxtImg(media: any) {
 }
 
 function useBackgroundImage() {
-  return { backgroundImage: `url('${featuredImage.value}')` };
+  return { backgroundImage: `url('${featuredImage}')` };
 }
 </script>
 

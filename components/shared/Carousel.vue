@@ -23,7 +23,7 @@ const { data: slides } = useAsyncData("slides", (_) => {
 
 <template>
   <div class="container mx-auto p-4">
-    <h2>{{ name }}</h2>
+    <h2 class="mt-0">{{ name }}</h2>
     <Swiper
       :modules="[SwiperAutoplay]"
       slides-per-view="auto"
@@ -40,14 +40,18 @@ const { data: slides } = useAsyncData("slides", (_) => {
         v-for="slide in slides"
         :key="slide.slug"
       >
-        <div class="w-full rounded overflow-hidden">
+        <!-- TODO: handle the page path in the usePage composable -->
+        <nuxt-link
+          class="w-full rounded overflow-hidden"
+          :to="'/discover/' + slide.slug"
+        >
           <shared-media :content="slide.cover" class="m-0" />
           <h2
             class="absolute top-[50%] left-[50%] text-white translate-x-[-50%] translate-y-[-50%] m-0"
           >
             {{ slide.internalName }}
           </h2>
-        </div>
+        </nuxt-link>
       </SwiperSlide>
     </Swiper>
   </div>
