@@ -11,5 +11,7 @@
 <script setup>
 const route = useRoute();
 const { slug } = route.params;
-const data = await usePage(slug);
+const currentSlug = ref([...slug].pop());
+
+const data = await usePage(currentSlug.value);
 </script>
