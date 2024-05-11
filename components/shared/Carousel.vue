@@ -55,10 +55,7 @@ const slides = computed(() => {
         :key="slide.slug"
       >
         <!-- TODO: handle the page path in the usePage composable -->
-        <nuxt-link
-          class="w-full rounded overflow-hidden"
-          :to="'/discover/' + slide.slug"
-        >
+        <nuxt-link class="w-full rounded overflow-hidden" :to="slide.slug">
           <shared-media
             :content="slide.cover"
             class="m-0 rounded filter brightness-50"

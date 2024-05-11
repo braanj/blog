@@ -36,6 +36,8 @@ export default defineNuxtConfig({
     ],
   ],
 
+  plugins: ["~/plugins/analytics.client"],
+
   image: {
     contentful: {},
   },

@@ -1,4 +1,4 @@
 export default async <T>(slug: string) => {
-  const response = await useFetchWithCache(`/api/discover/${slug}`);
+  const response = await useFetchWithCache(`/api/page/${slug}`);
   return response;
 };
