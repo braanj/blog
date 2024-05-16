@@ -22,7 +22,7 @@ const slides = computed(() => {
 </script>
 
 <template>
-  <div class="container mx-auto p-4">
+  <div class="container py-6 px-4">
     <h2 class="mt-0">{{ name }}</h2>
     <Swiper
       :modules="[SwiperAutoplay]"

@@ -1,10 +1,8 @@
 <template>
   <section v-for="(container, index) in data" :key="index">
-    <div v-if="container">
-      <div v-for="content in container.content">
-        <component :is="content.type" :content="content" />
-      </div>
-    </div>
+    <template v-if="container" v-for="content in container.content">
+      <component :is="content.type" :content="content" />
+    </template>
   </section>
 </template>
 

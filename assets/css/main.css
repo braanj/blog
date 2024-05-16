@@ -8,5 +8,5 @@ section {
 }
 
 .container {
-  @apply max-w-[1000px];
+  @apply max-w-[1000px] mx-auto;
 }
