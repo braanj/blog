@@ -8,7 +8,6 @@
         <div class="mx-auto max-w-7xl">
           <div class="relative flex h-16 items-center justify-between">
             <div class="flex items-center mr-3">
-              <!-- Mobile menu button-->
               <button
                 type="button"
                 class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-slate-800/60 hover:text-white focus:outline-none focus:ring-1 focus:ring-inset focus:ring-white"
@@ -112,7 +111,7 @@
 
         <div
           id="mobile-menu"
-          class="absolute top-0 left-0 bg-black min-h-[100vh] min-w-[350px] border-r border-slate-700"
+          class="absolute top-0 left-0 bg-black min-h-[100vh] w-full max-w-[350px] border-r border-slate-700"
           v-if="isMobileMenuOpen"
         >
           <div class="p-3 flex justify-between border-b border-slate-700">
@@ -149,14 +148,21 @@
           <div class="space-y-1 px-2 pb-3 pt-4">
             <nuxt-link
               to="/"
-              class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+              class="text-slate-400 hover:text-slate-200 hover:bg-slate-800 block rounded px-3 py-2 text-base font-medium"
               aria-current="page"
               >Home</nuxt-link
+            >
+            <nuxt-link
+              to="/red-rose"
+              class="text-slate-400 hover:text-slate-200 hover:bg-slate-800 block rounded px-3 py-2 text-base font-medium"
+              aria-current="page"
+              >Red rose</nuxt-link
             >
           </div>
         </div>
       </div>
     </nav>
+    <div class="flex w-full min-h-[57px]" :style="headerOffsetStyles"></div>
     <div
       class="fixed top-0 left-0 w-full h-full z-10 bg-slate-400/50"
       v-if="isProfileDropdown || isMobileMenuOpen"
@@ -178,10 +184,21 @@
 import { SpeedInsights } from "@vercel/speed-insights/nuxt";
 const isProfileDropdown = ref(false);
 const isMobileMenuOpen = ref(false);
+const headerOffset = ref(0);
+
+const headerOffsetStyles = computed(() => ({
+  height: `${headerOffset.value}px`,
+}));
+
+onMounted(() => {
+  console.log("Mounted");
+  headerOffset.value = document.querySelector("nav").offsetHeight;
+});
 
 function openProfileDropdown() {
   isProfileDropdown.value = !isProfileDropdown.value;
 }
+
 function openMobileMenu() {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 }
