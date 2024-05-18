@@ -55,8 +55,8 @@
         </ul>
       </div>
 
-      <div class="flex-none">
-        <div class="px-2" v-for="mode in themes" :key="mode.value">
+      <div class="flex-none px-2">
+        <div v-for="mode in themes" :key="mode.value">
           <nuxt-img
             :src="mode.icon"
             :alt="mode.value"
@@ -107,7 +107,6 @@ const route = useRoute();
 watch(
   () => route.path,
   (value) => {
-    console.log(value);
     drawer.value = false;
   }
 );
