@@ -1,89 +1,86 @@
 <template>
-  <div>
-    <speed-insights />
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-base-100">
-      <div class="navbar container">
-        <div class="flex-none">
-          <div class="drawer">
-            <input
-              id="my-drawer"
-              type="checkbox"
-              class="drawer-toggle"
-              v-model="drawer"
-            />
-            <div class="drawer-content">
-              <label
-                for="my-drawer"
-                class="btn btn-ghost btn-square drawer-button"
+  <speed-insights />
+  <nav class="fixed top-0 left-0 right-0 z-40 bg-base-100">
+    <div class="navbar container">
+      <div class="flex-none relative z-50">
+        <div class="drawer">
+          <input
+            id="my-drawer"
+            type="checkbox"
+            class="drawer-toggle"
+            v-model="drawer"
+          />
+          <div class="drawer-content">
+            <label
+              for="my-drawer"
+              class="btn btn-ghost btn-square drawer-button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                class="inline-block w-8 h-8 stroke-current"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  class="inline-block w-8 h-8 stroke-current"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  ></path>
-                </svg>
-              </label>
-            </div>
-            <div class="drawer-side">
-              <label
-                for="my-drawer"
-                aria-label="close sidebar"
-                class="drawer-overlay"
-              ></label>
-              <ul
-                class="menu p-4 w-80 min-h-full bg-base-200 text-base-content"
-              >
-                <nuxt-link to="/" class="text-black text-xl">Home</nuxt-link>
-                <nuxt-link to="/red-rose" class="text-black text-xl"
-                  >Red rose</nuxt-link
-                >
-              </ul>
-            </div>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </label>
+          </div>
+          <div class="drawer-side">
+            <label
+              for="my-drawer"
+              aria-label="close sidebar"
+              class="drawer-overlay"
+            ></label>
+            <ul class="prose menu p-4 w-80 min-h-full bg-base-200">
+              <nuxt-link to="/" class="link">Home</nuxt-link>
+              <nuxt-link to="/red-rose" class="link">Red rose</nuxt-link>
+            </ul>
           </div>
         </div>
+      </div>
 
-        <div class="flex-1 ml-4">
-          <nuxt-link to="/" class="text-black text-xl">Nuxt Blog</nuxt-link>
-        </div>
+      <div class="flex-1 ml-4">
+        <nuxt-link to="/" class="prose link">Nuxt Blog</nuxt-link>
+      </div>
 
-        <div class="flex-none">
-          <button class="btn btn-square btn-ghost">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              class="inline-block w-5 h-5 stroke-current"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-              ></path>
-            </svg>
-          </button>
+      <div class="flex-1 sm:block hidden">
+        <ul class="prose flex gap-4">
+          <nuxt-link to="/" class="link">Home</nuxt-link>
+          <nuxt-link to="/red-rose" class="link">Red rose</nuxt-link>
+        </ul>
+      </div>
+
+      <div class="flex-none">
+        <div class="px-2" v-for="mode in themes" :key="mode.value">
+          <nuxt-img
+            :src="mode.icon"
+            :alt="mode.value"
+            height="1"
+            width="1"
+            class="h-6 w-6 m-0"
+            v-show="mode.value !== theme"
+            @click="changeTheme(mode.value)"
+          />
         </div>
       </div>
-    </nav>
-    <div class="flex w-full min-h-[57px]" :style="headerOffsetStyles"></div>
+    </div>
+  </nav>
+  <div class="flex w-full min-h-[57px]" :style="headerOffsetStyles"></div>
 
-    <main
-      class="flex flex-col w-full h-full min-h-screen prose prose-xl max-w-none"
-    >
-      <slot />
-    </main>
+  <main
+    class="flex flex-col w-full h-full min-h-screen prose prose-xl max-w-none"
+  >
+    <slot />
+  </main>
 
-    <footer class="bg-black text-center text-slate-300 p-4">
-      &copy; All rights reserved
-    </footer>
-  </div>
+  <footer class="bg-black text-center text-slate-300 p-4">
+    &copy; All rights reserved
+  </footer>
 </template>
 
 <script setup>
@@ -91,29 +88,62 @@ import { SpeedInsights } from "@vercel/speed-insights/nuxt";
 const headerOffset = ref(0);
 const drawer = ref(false);
 
-const route = useRoute();
-
-watch(
-  route,
-  (value) => {
-    drawer.value = false;
-    console.log(drawer.value);
-  },
-  { deep: true, immediate: true }
-);
-
 const headerOffsetStyles = computed(() => ({
   height: `${headerOffset.value}px`,
 }));
 
+const theme = useState("theme", () => "light");
+const themes = [
+  { value: "light", label: "Light", icon: "/icons/sun.svg" },
+  { value: "dark", label: "Dark", icon: "/icons/moon.svg" },
+];
+
 onMounted(() => {
-  console.log("Mounted");
   headerOffset.value = document.querySelector("nav").offsetHeight;
+  handleThemeChange();
 });
+
+const route = useRoute();
+watch(
+  () => route.path,
+  (value) => {
+    console.log(value);
+    drawer.value = false;
+  }
+);
+
+watch(
+  theme,
+  () => {
+    if (document)
+      document.querySelector("html").setAttribute("data-theme", theme.value);
+  },
+  { deep: true, immediate: true }
+);
+
+function handleThemeChange() {
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    changeTheme("dark");
+  } else {
+    changeTheme("light");
+  }
+}
+
+function changeTheme(mode) {
+  theme.value = mode;
+}
 </script>
 
 <style scoped>
-.router-link-exact-active {
-  @apply text-black;
+.link {
+  @apply no-underline text-xl opacity-75 hover:opacity-100;
+}
+
+.link.router-link-exact-active {
+  @apply opacity-100;
 }
 </style>
