@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <div class="flex flex-col">
+    <div class="container flex flex-col m-auto text-center items-center p-4">
       <div v-if="error.statusCode === '404'" class="porse">
         <h1 class="font-bold">404</h1>
         <p>Page not found!</p>

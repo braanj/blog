@@ -1,4 +1,5 @@
 <script setup>
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 const props = defineProps({
   content: {
     type: {},
@@ -8,17 +9,14 @@ const props = defineProps({
 const shortSimpleText = computed(() => props.content.shortSimpleText);
 const longSimpleText = computed(() => props.content.longSimpleText);
 
-const { data: richText } = useAsyncData("richText", async (_) => {
-  const { documentToHtmlString } = await import(
-    "@contentful/rich-text-html-renderer"
-  );
-
+const richText = computed(() => {
+  if (!props.content.richText) return;
   return documentToHtmlString(props.content.richText.json);
 });
 </script>
 
 <template>
-  <div class="container mx-auto p-4">
+  <div class="container p-4 text-justify">
     <p v-if="shortSimpleText">{{ shortSimpleText }}</p>
     <p v-if="longSimpleText">{{ longSimpleText }}</p>
     <div v-if="richText" v-html="richText"></div>

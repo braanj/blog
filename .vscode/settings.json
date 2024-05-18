@@ -14,5 +14,8 @@
   "prettier.arrowParens": "always",
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
   }
 }
