@@ -69,7 +69,7 @@ export const headlineImageFields = gql`
 `;
 
 const CONTENT_CONTAINERS_LIMIT = 10;
-export const carouselFields = gql`
+export const carouselFields = (slug: string = "") => gql`
   fragment carouselFields on Carousel {
     internalName
     externalName
@@ -77,7 +77,7 @@ export const carouselFields = gql`
     numberToDisplayAtOneTime
     startAutoplaying
     autoplayTime
-    contentCollection(limit: ${CONTENT_CONTAINERS_LIMIT}) {
+    contentCollection(where: {slug_not_in: "${slug}"}, limit: ${CONTENT_CONTAINERS_LIMIT}) {
       items {
         __typename
         ...on Page {

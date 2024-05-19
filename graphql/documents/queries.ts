@@ -42,7 +42,7 @@ export const usePageQuery = (slug: string) => {
   ${buttonFields}
   ${mediaFields}
   ${headlineImageFields}
-  ${carouselFields}
+  ${carouselFields(slug)}
 `;
 };
 
@@ -78,6 +78,6 @@ export const useSettingsQuery = () => {
     ${buttonFields}
     ${mediaFields}
     ${headlineImageFields}
-    ${carouselFields}
+    ${carouselFields()}
   `;
 };
