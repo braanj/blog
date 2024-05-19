@@ -12,6 +12,7 @@ export default defineEventHandler(async (event: any) => {
   const query = usePageQuery(slug);
 
   const data: Page = await useRequest<Page>(query);
+
   return extractContent(
     data.pageCollection.items[0]?.contentContainersCollection.items
   );

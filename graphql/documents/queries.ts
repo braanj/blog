@@ -16,11 +16,13 @@ export const usePageQuery = (slug: string) => {
     pageCollection(where: { slug: "${slug}" }, limit: ${PAGE_COLLECTION_LIMIT}) {
       items {
         externalName
-        internalName
+        parent {
+          externalName
+          slug
+        }
         contentContainersCollection(limit: ${CONTENT_CONTAINERS_LIMIT}) {
           items {
             externalName
-            internalName
             contentCollection(limit: ${CONTENT_CONTAINERS_LIMIT}) {
               items {
                 __typename
