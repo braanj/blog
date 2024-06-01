@@ -50,23 +50,26 @@ const slides = computed(() => {
       }"
     >
       <SwiperSlide
-        class="rounded max-w-80 overflow-hidden shadow-lg border-[.5px] border-slate-700 p-1"
+        class="rounded overflow-hidden"
         v-for="slide in slides"
         :key="slide.slug"
       >
         <!-- TODO: handle the page path in the usePage composable -->
         <nuxt-link class="w-full rounded overflow-hidden" :to="slide.slug">
-          <shared-media
-            :content="slide.cover"
-            class="m-0 rounded filter brightness-50"
-          />
-          <h2
-            class="absolute top-[50%] left-[50%] text-white translate-x-[-50%] translate-y-[-50%] m-0"
-          >
-            {{ slide.internalName }}
-          </h2>
+          <shared-media :content="slide.cover" class="m-0 rounded" />
+          <div class="absolute bottom-0 left-0 w-[100%] px-4 py-4 gradient">
+            <h2 class="m-0 text-white">
+              {{ slide.internalName }}
+            </h2>
+          </div>
         </nuxt-link>
       </SwiperSlide>
     </Swiper>
   </div>
 </template>
+
+<style scoped>
+.gradient {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), transparent);
+}
+</style>
