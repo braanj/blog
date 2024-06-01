@@ -73,6 +73,7 @@ export const carouselFields = (slug: string = "") => gql`
   fragment carouselFields on Carousel {
     internalName
     externalName
+    description
     codeId
     numberToDisplayAtOneTime
     startAutoplaying

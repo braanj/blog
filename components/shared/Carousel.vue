@@ -24,6 +24,11 @@ const slides = computed(() => {
 <template>
   <div class="container py-6 px-4">
     <h2 class="mt-0">{{ name }}</h2>
+    <MDC
+      v-if="content.description"
+      :value="content.description"
+      tag="article"
+    />
     <Swiper
       :modules="[SwiperAutoplay]"
       :lazy="true"
