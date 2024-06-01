@@ -25,15 +25,6 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxt/image",
     "nuxt-swiper",
-    [
-      "@nuxtjs/google-fonts",
-      {
-        families: {
-          Roboto: [300, 400, 600, 700],
-        },
-        useStylesheet: true,
-      },
-    ],
     "@nuxtjs/mdc",
   ],
 
@@ -41,6 +32,10 @@ export default defineNuxtConfig({
 
   image: {
     contentful: {},
+  },
+
+  swiper: {
+    modules: ["autoplay", "navigation", "pagination", "a11y"],
   },
 
   components: { global: true, dirs: ["~/components"] },
