@@ -10,7 +10,7 @@
         <p>Oh no! It looks like somthing went wrong!</p>
       </div>
       <pre>{{ error.message }}</pre>
-      <p>Go to the<a href="#" @click="handleError"> first lesson</a></p>
+      <p>Go to <a href="#" @click="handleError"> home</a></p>
     </div>
   </NuxtLayout>
 </template>
@@ -18,7 +18,6 @@
 <script setup>
 const error = useError();
 
-// Clear error
 const handleError = () => {
   clearError({
     redirect: "/",

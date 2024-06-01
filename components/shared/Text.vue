@@ -16,9 +16,15 @@ const richText = computed(() => {
 </script>
 
 <template>
-  <div class="container p-4 text-justify">
+  <div class="container py-8 px-4 text-justify">
     <p v-if="shortSimpleText">{{ shortSimpleText }}</p>
     <p v-if="longSimpleText">{{ longSimpleText }}</p>
     <div v-if="richText" v-html="richText"></div>
   </div>
 </template>
+
+<style>
+*:first-child {
+  margin-top: 0;
+}
+</style>

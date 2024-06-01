@@ -4,7 +4,12 @@
  * @returns A Promise that resolves to the formatted content containers collection.
  */
 export default (contentContainersCollection: any[]) => {
-  if (!contentContainersCollection.length) return [];
+  if (
+    !contentContainersCollection ||
+    (contentContainersCollection && !contentContainersCollection.length)
+  ) {
+    return [];
+  }
 
   contentContainersCollection = contentContainersCollection.reduce(
     (result: any, container: any) => {
