@@ -134,6 +134,7 @@ function handleThemeChange() {
 
 function changeTheme(mode) {
   theme.value = mode;
+  localStorage.setItem("theme", mode);
 }
 </script>
 
