@@ -34,6 +34,7 @@ export default defineNuxtConfig({
         useStylesheet: true,
       },
     ],
+    "@nuxtjs/mdc",
   ],
 
   plugins: ["~/plugins/analytics.client"],
