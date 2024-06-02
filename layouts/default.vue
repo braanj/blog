@@ -36,22 +36,42 @@
               aria-label="close sidebar"
               class="drawer-overlay"
             ></label>
-            <ul class="prose menu p-4 w-80 min-h-full bg-base-200">
-              <nuxt-link to="/" class="link">Home</nuxt-link>
-              <nuxt-link to="/red-rose" class="link">Red rose</nuxt-link>
-            </ul>
+
+            <div class="w-80 min-h-full bg-base-200">
+              <div
+                class="prose p-4 flex w-full items-center min-h-[57px] border-b"
+                :style="headerOffsetStyles"
+              >
+                <!-- TODO: replace with the logo -->
+                <nuxt-link to="/" class="prose link">Nuxt Blog</nuxt-link>
+              </div>
+              <ul class="prose menu p-0 flex">
+                <nuxt-link
+                  v-for="(item, index) in outline"
+                  :key="`main-menu-${item.path}`"
+                  :to="item.path"
+                  class="no-underline text-lg transition-all px-4 py-3 hover:bg-slate-200 opacity-100"
+                  >{{ item.label }}</nuxt-link
+                >
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="flex-1 ml-4">
+      <div class="flex-none ml-4">
         <nuxt-link to="/" class="prose link">Nuxt Blog</nuxt-link>
       </div>
 
       <div class="flex-1 sm:block hidden">
-        <ul class="prose flex gap-4">
-          <nuxt-link to="/" class="link">Home</nuxt-link>
-          <nuxt-link to="/red-rose" class="link">Red rose</nuxt-link>
+        <ul class="prose flex gap-4 mx-auto">
+          <nuxt-link
+            v-for="(item, index) in outline"
+            :key="item.path"
+            :to="item.path"
+            class="link"
+            >{{ item.label }}</nuxt-link
+          >
         </ul>
       </div>
 
@@ -87,6 +107,7 @@
 import { SpeedInsights } from "@vercel/speed-insights/nuxt";
 const headerOffset = ref(0);
 const drawer = ref(false);
+const { $outline: outline } = useNuxtApp();
 
 const headerOffsetStyles = computed(() => ({
   height: `${headerOffset.value}px`,
