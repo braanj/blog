@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     "@nuxtjs/mdc",
   ],
 
-  plugins: ["~/plugins/analytics.client"],
+  plugins: ["~/plugins/analytics.client", "~/plugins/outline"],
 
   image: {
     contentful: {},
