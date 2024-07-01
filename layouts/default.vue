@@ -7,7 +7,7 @@
           <input
             id="my-drawer"
             type="checkbox"
-            class="drawer-toggle"
+            class="drawer-toggle gtm-open_side_menu"
             v-model="drawer"
           />
           <div class="drawer-content">
@@ -82,7 +82,7 @@
             :alt="mode.value"
             height="1"
             width="1"
-            class="h-6 w-6 m-0"
+            class="h-6 w-6 m-0 gtm-change_theme"
             v-show="mode.value !== theme"
             @click="changeTheme(mode.value)"
           />
