@@ -17,8 +17,6 @@ const { data: home } = await useAsyncData("home", () =>
   client.getByUID("page", "home")
 );
 
-console.log(home.value);
-
 useHead({
   title: computed(
     () =>
