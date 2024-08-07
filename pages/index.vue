@@ -1,11 +1,37 @@
 <template>
-  <section v-for="(container, index) in data" :key="index">
-    <template v-if="container" v-for="content in container.content">
-      <component :is="content.type" :content="content" />
-    </template>
-  </section>
+  <SliceZone
+    wrapper="main"
+    :slices="home?.data.slices ?? []"
+    :components="components"
+  />
 </template>
 
 <script setup>
-const data = await useHomepage();
+import { components } from "~/slices";
+
+const { client } = usePrismic();
+const prismic = usePrismic();
+const settings = useSettings();
+
+const { data: home } = await useAsyncData("home", () =>
+  client.getByUID("page", "home")
+);
+
+console.log(home.value);
+
+useHead({
+  title: computed(
+    () =>
+      `${prismic.asText(home.value?.data.title)} | ${prismic.asText(settings.value?.data.siteTitle)}`
+  ),
+});
+
+useSeoMeta({
+  title: computed(() => home.value?.data.metaTitle),
+  ogTitle: computed(() => home.value?.data.metaTitle),
+  description: computed(() => home.value?.data.metaDescription),
+  ogDescription: computed(() => home.value?.data.metaDescription),
+  ogImage: "https://example.com/image.png",
+  twitterCard: "summary_large_image",
+});
 </script>

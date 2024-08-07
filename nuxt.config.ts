@@ -34,7 +34,15 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     "@nuxtjs/mdc",
     GTM_ENABLED ? "@zadigetvoltaire/nuxt-gtm" : null,
+    "@nuxtjs/prismic",
   ],
+
+  prismic: {
+    endpoint: "anjar",
+    clientConfig: {
+      accessToken: process.env.NUXT_PRISMIC_API_TOKEN,
+    },
+  },
 
   plugins: ["~/plugins/analytics.client", "~/plugins/outline"],
 
