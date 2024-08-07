@@ -1,5 +1,4 @@
 <template>
-  <speed-insights />
   <Header />
 
   <main
@@ -14,15 +13,6 @@
 </template>
 
 <script setup>
-import { SpeedInsights } from "@vercel/speed-insights/nuxt";
-const headerOffset = ref(0);
-const drawer = ref(false);
-const { $outline: outline } = useNuxtApp();
-
-const headerOffsetStyles = computed(() => ({
-  height: `${headerOffset.value}px`,
-}));
-
 const theme = useState("theme", () => "light");
 const themes = [
   { value: "light", label: "Light", icon: "/icons/sun.svg" },
@@ -30,17 +20,8 @@ const themes = [
 ];
 
 onMounted(() => {
-  headerOffset.value = document.querySelector("nav").offsetHeight;
   handleThemeChange();
 });
-
-const route = useRoute();
-watch(
-  () => route.path,
-  (value) => {
-    drawer.value = false;
-  }
-);
 
 watch(
   theme,
@@ -68,13 +49,3 @@ function changeTheme(mode) {
   localStorage.setItem("theme", mode);
 }
 </script>
-
-<style scoped>
-.link {
-  @apply no-underline text-xl opacity-75 hover:opacity-100;
-}
-
-.link.router-link-exact-active {
-  @apply opacity-100;
-}
-</style>

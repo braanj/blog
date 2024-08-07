@@ -9,7 +9,6 @@
     "slicemachine": "start-slicemachine"
   },
   "devDependencies": {
-    "@contentful/rich-text-html-renderer": "^16.3.5",
     "@nuxt/image": "^1.4.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/mdc": "^0.7.1",
@@ -21,19 +20,13 @@
     "@tailwindcss/typography": "^0.5.8",
     "@vueuse/core": "^10.7.0",
     "@vueuse/nuxt": "^10.7.0",
-    "@zadigetvoltaire/nuxt-gtm": "^0.0.13",
-    "daisyui": "^4.11.1",
     "eslint": "^8.55.0",
-    "graphql": "^16.8.1",
-    "graphql-request": "^6.1.0",
     "nuxt": "^3.11.2",
     "pinia": "^2.1.7",
     "slice-machine-ui": "^2.4.1",
     "vite-plugin-vsharp": "^1.7.3"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.2.2",
-    "@vercel/speed-insights": "^1.0.10",
     "nuxt-swiper": "^1.2.2"
   }
 }
