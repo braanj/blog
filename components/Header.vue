@@ -4,7 +4,7 @@ const settings = useSettings();
 </script>
 
 <template>
-  <Bounded as="header" y-padding="sm">
+  <header as="header" y-padding="sm">
     <div
       class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 leading-none"
     >
@@ -25,5 +25,5 @@ const settings = useSettings();
         </ul>
       </nav>
     </div>
-  </Bounded>
+  </header>
 </template>

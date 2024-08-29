@@ -6,6 +6,8 @@ export default defineNuxtConfig({
     contentfulBaseUrl: "",
     contentfulSpaceId: "",
     contentfulToken: "",
+    prismicApiToken: "",
+    prismicApiEndpoint: "",
   },
 
   nitro: {
@@ -30,7 +32,7 @@ export default defineNuxtConfig({
   ],
 
   prismic: {
-    endpoint: "anjar",
+    endpoint: process.env.NUXT_PRISMIC_API_ENDPOINT,
     clientConfig: {
       accessToken: process.env.NUXT_PRISMIC_API_TOKEN,
     },
