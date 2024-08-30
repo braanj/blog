@@ -18,17 +18,15 @@ const { data: home } = await useAsyncData("home", () =>
 );
 
 useHead({
-  title: computed(
-    () =>
-      `${prismic.asText(home.value?.data.title)} | ${prismic.asText(settings.value?.data.siteTitle)}`
-  ),
+  title: () =>
+    `${prismic.asText(home.value?.data.title)} | ${prismic.asText(settings.value?.data.siteTitle)}`,
 });
 
 useSeoMeta({
-  title: computed(() => home.value?.data.metaTitle),
-  ogTitle: computed(() => home.value?.data.metaTitle),
-  description: computed(() => home.value?.data.metaDescription),
-  ogDescription: computed(() => home.value?.data.metaDescription),
+  title: () => home.value?.data.metaTitle,
+  ogTitle: () => home.value?.data.metaTitle,
+  description: () => home.value?.data.metaDescription,
+  ogDescription: () => home.value?.data.metaDescription,
   ogImage: "https://example.com/image.png",
   twitterCard: "summary_large_image",
 });
