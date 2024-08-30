@@ -10,10 +10,6 @@ export default defineNuxtConfig({
     prismicApiEndpoint: "",
   },
 
-  routeRules: {
-    "/": { prerender: true },
-  },
-
   vite: {
     plugins: [vsharp()],
   },
